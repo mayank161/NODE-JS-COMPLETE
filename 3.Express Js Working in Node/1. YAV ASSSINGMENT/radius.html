@@ -6,8 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radius of circle</title>
 </head>
-<body>
-    enter radius <input type="number">
-    <button id="btn"> submit </button>
+<body id="body">
+    <form action="">
+        enter radius <input type="number" id="num">
+        <button id="btn"> submit </button>
+    </form>
+    <script>
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const radius = document.getElementById('num');
+        
+            const area = 3.14 * Math.pow(radius.value,2);
+            
+            const body = document.getElementById('body');
+
+            body.innerHTML = `<h1> Area of circle = ${area}</h1>`;
+        })
+
+    </script>
 </body>
 </html>
