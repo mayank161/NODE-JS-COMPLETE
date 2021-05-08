@@ -4,6 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const p = path.join(__dirname,'../','Data','product.json');
 
 module.exports = class product {
     constructor(t) {
@@ -11,8 +12,6 @@ module.exports = class product {
     }
 
     save() {
-       const p = path.join(__dirname,'../','Data','product.json');
-
        fs.readFile(p,(err,fileContent) => {
            let product = [];
            if(!err) { // check file present in the path or not
@@ -27,7 +26,6 @@ module.exports = class product {
     }
 
     static fetch(cb) { // so to adjust the async we have to use a callback function in it which will run when it read the file
-        const p = path.join(__dirname,'../','Data','product.json');
         fs.readFile(p, (err,fileContent) => { // fs.read is async function so to it will throw error if we access it before time
             if(err) {
                 cb([]); // we are using function so it will run only once the read file runs
