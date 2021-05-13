@@ -10,6 +10,8 @@ const product = require('./models/product');
 const user = require('./models/user');
 const cart = require('./models/cart');
 const cartItem = require('./models/cart-item');
+const order =require('./models/order');
+const orderItems = require('./models/order-items');
 
 const app = express();
 
@@ -46,6 +48,11 @@ cart.belongsTo(user);
 // here many to many relation so we have to store both the id specifically using through in table
 cart.belongsToMany(product, { through: cartItem});
 product.belongsToMany(cart, { through: cartItem});
+// relation of order with all in database
+order.belongsTo(user);
+user.hasMany(order);
+
+order.belongsToMany(product, { through: orderItems });
 
 //sequelize.sync({ force: true })
 sequelize.sync()
